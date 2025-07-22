@@ -1,0 +1,15 @@
+[Unit]
+Description=QHTTPPollMQTT polls a URL and publishes the result to a MQTT broker.
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=200
+StartLimitInterval=200
+StartLimitBurst=3
+
+[Service]
+ExecStart=/usr/bin/QHTTPPollMQTT --config /etc/qhttppoll2mqtt.ini
+Restart=on-failure
+RestartSec=90
+
+[Install]
+WantedBy=multi-user.target
