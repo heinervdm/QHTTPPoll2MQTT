@@ -27,6 +27,7 @@ WebPoller::WebPoller(const QHTTPPoll2MQTTConfig &config, QObject *parent)
           &WebPoller::onPollResult);
   m_timer = new QTimer;
   m_timer->setInterval(config.pollInterval());
+  connect(m_timer, &QTimer::timeout, this, &WebPoller::poll);
   m_timer->start();
 }
 
