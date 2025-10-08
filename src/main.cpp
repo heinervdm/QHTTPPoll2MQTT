@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
   }
 
   WebPoller poll(config);
-  MqttHandler mc(config, "fronius");
+  MqttHandler mc(config);
   QObject::connect(&poll, &WebPoller::messageReceived, &mc,
                    &MqttHandler::handleMessage);
 

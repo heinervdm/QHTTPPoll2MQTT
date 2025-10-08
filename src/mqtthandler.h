@@ -31,8 +31,7 @@
 class MqttHandler : public QObject {
   Q_OBJECT
 public:
-  MqttHandler(const QHTTPPoll2MQTTConfig &config, const QString &topic,
-              QObject *parent = nullptr);
+  MqttHandler(const QHTTPPoll2MQTTConfig &config, QObject *parent = nullptr);
 
 signals:
   void errorOccured(QMqttClient::ClientError error);
