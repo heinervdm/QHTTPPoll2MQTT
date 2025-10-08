@@ -23,9 +23,8 @@
 #include <QJsonDocument>
 #include <QTextStream>
 
-MqttHandler::MqttHandler(const QHTTPPoll2MQTTConfig &config,
-                         const QString &topic, QObject *parent)
-    : QObject(parent), m_topic(topic) {
+MqttHandler::MqttHandler(const QHTTPPoll2MQTTConfig &config, QObject *parent)
+    : QObject(parent) {
   m_client.setProtocolVersion(config.mqttVersion());
   m_client.setHostname(config.mqttHostname());
   m_client.setPort(config.mqttPort());
@@ -52,6 +51,8 @@ MqttHandler::MqttHandler(const QHTTPPoll2MQTTConfig &config,
   } else {
     m_client.connectToHost();
   }
+
+  m_topic = config.mqttTopic();
 }
 
 void MqttHandler::handleMessage(const QByteArray &msgContent) {
